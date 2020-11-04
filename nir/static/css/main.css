@@ -1,0 +1,27 @@
+.wrapper {
+  width: 70%;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+}
+
+.form-distributions {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.inputs {
+  width: 100%;
+}
+
+.image-distribution {
+  width: 780px;
+  height: 500px;
+  border: 1px solid black;
+  margin-bottom: 40px;
+}
+
+.button-submit {
+  margin-top: 20px;
+}

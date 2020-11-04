@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+  {% load bootstrap4 %}
+
+  {# Load CSS and JavaScript #}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+  <script src='{% url 'js-catalog' %}'></script>
+  <script src='{% static '/admin/js/core.js' %}'></script>
+  <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <title>НИР</title>
+</head>
+<body>
+  <main>
+
+    <div class="wrapper">
+      <div class="row">
+        <div class="col-7 form-distributions">
+          <div class="image-distribution">{{ image }}</div>
+          <form action="{% url 'main' %}" method="GET">
+            {{ form.media }}
+            <div class="row ">
+                <div class="inputs d-flex ">
+                  <div class="col-4">
+                    {% bootstrap_label form.station.label label_for="station" %}
+                    {% bootstrap_field form.station show_label=False %}
+
+                  </div>
+                  <div class="col-4">
+                    {% bootstrap_label form.begin_date.label label_for="id_begin_date_0" %}
+                    {{ form.begin_date }}
+                  </div>
+                  <div class="col-4">
+                    {% bootstrap_label form.finish_date.label label_for="id_finish_date_0" %}
+                    {{ form.finish_date }}
+                  </div>
+                </div>
+                <div class="button-submit col-12 d-flex justify-content-center">
+                  {% bootstrap_button "Найти распределение" button_type="submit" button_class="btn-primary" %}
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+</body>
+</html>
