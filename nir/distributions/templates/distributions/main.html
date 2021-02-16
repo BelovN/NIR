@@ -23,7 +23,9 @@
     <div class="wrapper">
       <div class="row">
         <div class="col-7 form-distributions">
-          <div class="image-distribution">{{ image }}</div>
+          {% if not graph %}<div class="image-distribution"></div>{% endif %}
+          <img src="data:image/png;base64,{{ graph }}" alt="">
+
           <form action="{% url 'main' %}" method="GET">
             {{ form.media }}
             <div class="row ">

@@ -5,6 +5,10 @@ from django.shortcuts import render
 
 from .forms import DistributionForm
 
+import matplotlib.pyplot as plt
+import io
+import urllib
+import base64
 
 
 def format_date(date, time):
@@ -36,6 +40,17 @@ def main_view(request):
             }
         form = DistributionForm(initial=initial)
 
+
+
+    plt.plot(range(10), range(10), "o")
+    fig = plt.gcf()
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
     context = dict()
+    context['graph'] = uri
     context['form'] = form
     return render(request, 'distributions/main.html', context)
