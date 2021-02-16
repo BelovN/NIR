@@ -93,6 +93,7 @@ def best_fit_distribution(data, bins=200, ax=None):
 
     return (best_distribution.name, best_params)
 
+
 def make_pdf(dist, params, size=10000):
     """Generate distributions's Probability Distribution Function """
 
