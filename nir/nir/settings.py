@@ -25,7 +25,7 @@ SECRET_KEY = 'h_!&nas&!bv9!i$59q$inzm!&o1c0gmgm)&25t53ez@c95*l^6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['94.41.87.69', '127.0.0.1']
+ALLOWED_HOSTS = ['94.41.87.69', '127.0.0.1', 'belovnick.tk']
 
 
 # Application definition
