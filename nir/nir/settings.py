@@ -25,7 +25,7 @@ SECRET_KEY = 'h_!&nas&!bv9!i$59q$inzm!&o1c0gmgm)&25t53ez@c95*l^6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['94.41.87.69']
+ALLOWED_HOSTS = ['94.41.87.69', '127.0.0.1']
 
 
 # Application definition
@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Donwnloaded apps
+    # Downloaded apps
     'bootstrap4',
+    'django_extensions',
 
     # Own apps
     'distributions',
@@ -82,11 +83,18 @@ WSGI_APPLICATION = 'nir.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'pgpass5432',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
+
 }
 
 

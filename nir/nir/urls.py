@@ -8,5 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('jsi18n/', JavaScriptCatalog.as_view(), name='js-catalog'),
     path('distributions/', include('distributions.urls')),
+
     path('', include('arcgis.urls')),
+    path('api/', include('nir.api_urls')),
 ]

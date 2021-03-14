@@ -12,7 +12,7 @@ require(["esri/widgets/Sketch", "esri/Map", "esri/Graphic", "esri/layers/Graphic
     layers: [layer]
   })
     const request = new XMLHttpRequest();
-    const url = "stations-json";
+    const url = "/api/arcgis/stations/";
 
     /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
     а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */
@@ -25,12 +25,12 @@ require(["esri/widgets/Sketch", "esri/Map", "esri/Graphic", "esri/layers/Graphic
     request.addEventListener("readystatechange", () => {
 
         if (request.readyState === 4 && request.status === 200) {
-          var arr_from_json = JSON.parse( request.responseText )
+          var arr_from_json = JSON.parse( request.responseText );
           arr_from_json.forEach(function(element, index, array) {
               const point = {
                 type: 'point',
-                longitude: element['GEOLON'],
-                latitude: element['GEOLAT']
+                longitude: element['lon'],
+                latitude: element['lat'],
               };
 
               const textSymbol = {
@@ -39,7 +39,7 @@ require(["esri/widgets/Sketch", "esri/Map", "esri/Graphic", "esri/layers/Graphic
                 haloColor: "black",
                 haloSize: 1,
                 lineHeight: 1.5,
-                text: element['STATION-NAME'],
+                text: element['IAGA'],
                 yoffset: "5px",
               };
 
@@ -63,7 +63,6 @@ require(["esri/widgets/Sketch", "esri/Map", "esri/Graphic", "esri/layers/Graphic
               layer.add(pointGraphic);
               layer.add(textGraphic);
           });
-          console.log(arr_from_json)
 
         }
     });
