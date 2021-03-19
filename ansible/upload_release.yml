@@ -1,0 +1,45 @@
+
+---
+- name: Upload project to release
+  hosts: release
+  become: true
+
+  vars_prompt:
+
+    - name: username
+      prompt: "Github user"
+      private: no
+
+    - name: password
+      prompt: "Github password"
+
+  tasks:
+    - name: Ping server
+      ping:
+
+    - name: Get stuff from git
+      git:
+        repo: 'https://{{ username | urlencode }}:{{ password | urlencode }}@github.com/{{ username }}/NIR.git'
+        dest: /var/www/NIR
+        version: main
+        update: yes
+        force: yes
+
+    - name: Restart docker
+      docker_compose:
+        restarted: yes
+        project_src: "/var/www/NIR/"
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+
+    - name: Enable migrations
+      django_manage:
+        command: migrate
+        app_path: "/var/www/NIR/nir"
+        virtualenv: "/var/www/NIR/venv"
+
+    - name: Restart nginx
+      command: service nginx restart
+
+    - name: Restart gunicorn
+      command: service gunicorn restart
